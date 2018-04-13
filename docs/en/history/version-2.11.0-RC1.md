@@ -1,3 +1,7 @@
+% Version 2.11.0
+% greg
+% 04/13/2018
+
 Release 2.11.0-RC1
 ===========
 
@@ -7,7 +11,7 @@ Name: <span style="color: Olive"><span class="glyphicon glyphicon-music"></span>
 
 ## Upgrading from Earlier versions
 
-* See the [Upgrading Guide](http://rundeck.org/docs/upgrading/index.html)
+* See the [Upgrading Guide](../upgrading/index.html)
 
 ## Notes
 
