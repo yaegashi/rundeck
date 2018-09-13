@@ -141,6 +141,28 @@
         projectName: '${enc(js:project?:params.project)}'
       }
     </script>
+
+    <script type=text/javascript>
+
+        //get session value
+        var value ='${session.filterPref?.example}';
+        console.log(value);
+
+        //set value in session
+        var key = 'example';
+        var val = 'test';
+        jQuery.ajax({
+             url: _genUrl(appLinks.userAddFilterPref, {filterpref: key + "=" + val}),
+             method: 'POST',
+             beforeSend: _ajaxSendTokens.curry('uiplugin_tokens'),
+             success: function () {
+                 console.log("saved example " );
+             },
+             error: function () {
+                 console.log("save failed" );
+             }
+         }).success(_ajaxReceiveTokens.curry('uiplugin_tokens'));
+    </script>
 </head>
 <body class="sidebar-mini">
   <div class="wrapper">
