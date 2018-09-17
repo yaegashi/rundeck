@@ -108,6 +108,9 @@
             <asset:javascript src="global/uiplugins.js"/>
             <g:jsonToken id="uiplugin_tokens" url="${request.forwardURI}"/>
         </g:if>
+
+        <g:jsonToken id="ui_token" url="${request.forwardURI}"/>
+
         <g:each in="${uipluginsorder?:uiplugins?.keySet()?.sort()}" var="pluginname">
             <!-- BEGIN UI plugin scripts for ${pluginname} -->
             <g:each in="${uiplugins[pluginname].scripts}" var="scriptPath">
@@ -154,14 +157,14 @@
         jQuery.ajax({
              url: _genUrl(appLinks.userAddFilterPref, {filterpref: key + "=" + val}),
              method: 'POST',
-             beforeSend: _ajaxSendTokens.curry('uiplugin_tokens'),
+             beforeSend: _ajaxSendTokens.curry('ui_token'),
              success: function () {
                  console.log("saved example " );
              },
              error: function () {
                  console.log("save failed" );
              }
-         }).success(_ajaxReceiveTokens.curry('uiplugin_tokens'));
+         });
     </script>
 </head>
 <body class="sidebar-mini">
