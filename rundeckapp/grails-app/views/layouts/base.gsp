@@ -109,8 +109,6 @@
             <g:jsonToken id="uiplugin_tokens" url="${request.forwardURI}"/>
         </g:if>
 
-        <g:jsonToken id="ui_token" url="${request.forwardURI}"/>
-
         <g:each in="${uipluginsorder?:uiplugins?.keySet()?.sort()}" var="pluginname">
             <!-- BEGIN UI plugin scripts for ${pluginname} -->
             <g:each in="${uiplugins[pluginname].scripts}" var="scriptPath">
@@ -136,6 +134,7 @@
         </g:each>
 
     </g:if>
+    <g:jsonToken id="ui_token" url="${request.forwardURI}"/>
     <g:layoutHead/>
     <script type=text/javascript>
       window._rundeck = {
