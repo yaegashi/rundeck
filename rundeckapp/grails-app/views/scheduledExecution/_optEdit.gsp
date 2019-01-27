@@ -177,18 +177,42 @@
             </div>
         </div>
         <!-- ko if: !isFileType() -->
+        <div class="form-group opt_keystorage_disabled"
+             style="${wdgt.styleVisible(unless:option?.defaultStoragePath||option?.isDate || option?.secureInput || option?.secureExposed)}">
+            <label class="col-sm-2 control-label"><g:message code="form.option.formRows.label" /></label>
+            <div class="col-sm-10">
+                            <input type="number"
+                                   class="form-control"
+                                   name="formRows"
+                                   id="opt_formRows"
+                                   min="1"
+                                   data-bind="value: formRows"
+                            />
+            </div>
+        </div>
+
         <div class="form-group ${hasErrors(bean: option, field: 'defaultValue', 'has-error')} opt_keystorage_disabled"
              style="${wdgt.styleVisible(unless:option?.defaultStoragePath||option?.isDate || option?.secureInput || option?.secureExposed)}">
             <label class="col-sm-2 control-label"><g:message code="form.option.defaultValue.label" /></label>
             <div class="col-sm-10">
+                <div data-bind="if: formRows()<=1">
                             <input type="text"
                                    class="form-control"
                                    name="defaultValue"
                                    id="opt_defaultValue"
-                                   value="${enc(attr:option?.defaultValue)}"
                                    size="40"
                                    placeholder="Default value"
+                                   data-bind="value: defaultValue"
                             />
+                </div>
+                <div data-bind="if: formRows()>1">
+                            <textarea class="form-control"
+                                      name="defaultValue"
+                                      id="opt_defaultValue"
+                                      placeholder="Default value"
+                                      data-bind="value: defaultValue, attr: {rows: formRows}"
+                            />
+                </div>
             </div>
 
             <g:if test="${origName || option?.name && !newoption}">
@@ -682,7 +706,7 @@
     </div>
     <g:javascript>
       fireWhenReady('optedit_${enc(js: rkey)}',function(){
-          var editor=new OptionEditor({name:"${option?.name}",bashVarPrefix:'${DataContextUtils.ENV_VAR_PREFIX}',optionType:"${option?.optionType}"});
+          var editor=new OptionEditor({name:"${option?.name}",bashVarPrefix:'${DataContextUtils.ENV_VAR_PREFIX}',optionType:"${option?.optionType}",defaultValue:"${option?.defaultValue}",formRows:"${option?.formRows}"});
           ko.applyBindings(editor,jQuery('#optedit_${enc(js:rkey)}')[0]);
       });
     </g:javascript>

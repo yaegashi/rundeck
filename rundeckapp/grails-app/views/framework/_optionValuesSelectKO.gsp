@@ -67,11 +67,19 @@
                     </div>
                 </div>
                 <div data-bind="if: !isDate()">
+                    <div data-bind="if: formRows()<=1">
                     <g:textField name="-"
                                  data-bind="value: value, attr: {name: fieldName, id: fieldId}"
                                  class="optionvaluesfield form-control"
                                  value=""
                                  size="40"/>
+                    </div>
+                    <div data-bind="if: formRows()>1">
+                    <g:textArea name="-"
+                                 data-bind="value: value, attr: {name: fieldName, id: fieldId, rows: formRows()}"
+                                 class="optionvaluesfield form-control"
+                                 value="" />
+                    </div>
                 </div>
             </div>
         </div>

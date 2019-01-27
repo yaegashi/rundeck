@@ -47,4 +47,8 @@ function OptionEditor(data) {
     self.isFileType = ko.computed(function () {
         return "file" === self.optionType();
     });
+
+    self.defaultValue = ko.observable(data.defaultValue);
+
+    self.formRows = ko.observable(data.formRows ? data.formRows : 1);
 }
