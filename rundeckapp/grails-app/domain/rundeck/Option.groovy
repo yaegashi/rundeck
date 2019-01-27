@@ -68,6 +68,7 @@ public class Option implements Comparable{
     String optionType
     String configData
     Boolean multivalueAllSelected
+    Integer formRows
 
     static belongsTo=[scheduledExecution:ScheduledExecution]
     static transients = ['valuesList', 'realValuesUrl', 'configMap', 'typeFile']
@@ -95,6 +96,7 @@ public class Option implements Comparable{
         configData(nullable: true)
         multivalueAllSelected(nullable: true)
         label(nullable: true)
+        formRows(nullable: true)
     }
 
 
@@ -191,6 +193,9 @@ public class Option implements Comparable{
         if(secureExposed && secureInput){
             map.valueExposed= secureExposed
         }
+        if(null!=formRows){
+            map.formRows=formRows
+        }
         return map
     }
 
@@ -250,6 +255,9 @@ public class Option implements Comparable{
             opt.secureExposed=Boolean.valueOf(data.valueExposed)
         }else{
             opt.secureExposed=false
+        }
+        if(data.formRows!=null){
+            opt.formRows=data.formRows
         }
         return opt
     }
@@ -339,7 +347,7 @@ public class Option implements Comparable{
          'dateFormat', 'values', 'valuesList', 'valuesUrl', 'valuesUrlLong', 'regex', 'multivalued',
          'multivalueAllSelected', 'label',
          'delimiter',
-         'secureInput', 'secureExposed', 'optionType', 'configData'].
+         'secureInput', 'secureExposed', 'optionType', 'configData', 'formRows'].
                 each { k ->
             opt[k]=this[k]
         }
@@ -370,6 +378,7 @@ public class Option implements Comparable{
         ", delimiter='" + delimiter + '\'' +
                 ", optionType='" + optionType + '\'' +
                 ", configData='" + configData + '\'' +
+        ", formRows='" + formRows + '\'' +
         '}' ;
     }
 

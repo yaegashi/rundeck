@@ -96,6 +96,10 @@ function Option(data) {
      * list of all multivalue strings to choose from
      */
     self.multiValueList = ko.observableArray(data.multiValueList);
+    /**
+     * rows of textarea form
+     */
+    self.formRows = ko.observable(data.formRows ? data.formRows : 1);
 
     function emptyValue(val) {
         return (!val || val === '');

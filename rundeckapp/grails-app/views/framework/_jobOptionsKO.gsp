@@ -62,6 +62,7 @@ used by _editOptions.gsp template
                                               optionType         : optionSelect.optionType,
 //                                              config             : optionSelect.configMap,
                                               values             : optionSelect.values,
+                                              formRows           : optionSelect.formRows,
                                               defaultValue       : optionSelect.defaultValue,
                                               defaultStoragePath : optionSelect.defaultStoragePath,
                                               multivalued        : optionSelect.multivalued,
